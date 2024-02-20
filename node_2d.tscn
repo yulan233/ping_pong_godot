@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://8syculcb3lxr"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_mer6w"]
+[ext_resource type="PackedScene" uid="uid://c0khdntwboro1" path="res://player.tscn" id="2_qqe6n"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_mer6w")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-49, -73, -54, 694, 1227, 696, 1221, -67)
+
+[node name="Player2" parent="." instance=ExtResource("2_qqe6n")]
+position = Vector2(1088, 219)
+is_user_input_enabled = false
+
+[node name="Player" parent="." instance=ExtResource("2_qqe6n")]
+position = Vector2(48, 135)
