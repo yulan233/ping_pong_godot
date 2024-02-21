@@ -13,6 +13,8 @@ func _ready():
 	window_size = get_viewport_rect().size
 
 func _physics_process(_delta: float) -> void:
+	if GlobalVar.isStart==false:
+		return
 	if is_user_input_enabled:
 		# 移动角色
 		var direction := Input.get_axis("ui_up", "ui_down")
