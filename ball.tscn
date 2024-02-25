@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://h6l070jybvfn"]
+[gd_scene load_steps=3 format=3 uid="uid://h6l070jybvfn"]
+
+[ext_resource type="Script" path="res://ball.gd" id="1_xb54i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bat8c"]
 size = Vector2(15, 15)
 
-[node name="Ball" type="Area2D"]
+[node name="Ball" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_xb54i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bat8c")
