@@ -23,12 +23,14 @@ func s_game_over()->void:
 	if ball.game_over.is_connected(s_game_over):
 		ball.game_over.disconnect(s_game_over)
 	ball=null
+	ui.visible=true
 	pass
 
 func _on_button_pressed() -> void:
 	#防止多次生成
 	if ball!=null:
 		return
+	ui.visible=false
 	GlobalVar.isStart=!GlobalVar.isStart
 	ball=BALL.instantiate()
 	ball.game_over.connect(s_game_over)

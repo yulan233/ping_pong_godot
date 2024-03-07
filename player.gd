@@ -1,6 +1,6 @@
-extends CharacterBody2D
+extends Area2D
 
-
+const Ball = preload("res://ball.gd")
 
 @export var SPEED := 5.0
 @export var JUMP_VELOCITY := 100.0
@@ -38,3 +38,22 @@ func ai_move()->float:
 	var direction := randi_range(-1,1)
 	var new_velocity = direction * SPEED
 	return new_velocity
+
+
+func _on_body_entered(body: Node2D) -> void:
+	var ball:Ball=body as Ball
+	var ball_linear_velocity:=ball.linear_velocity/500
+	print(ball.position,position)
+	var p_b_offset:=position.y-ball.position.y
+	var in_player_per:=p_b_offset/60
+	# 判断方向并旋转和求反弹后向量
+	if ball_linear_velocity.dot(Vector2.LEFT)>0:
+		var n:=Vector2.RIGHT.rotated(-PI/4*in_player_per).normalized()
+		ball_linear_velocity=ball_linear_velocity.bounce(n).normalized()
+	else:
+		var n:=Vector2.LEFT.rotated(PI/4*in_player_per).normalized()
+		ball_linear_velocity=ball_linear_velocity.bounce(n).normalized()
+	#为ball赋值计算后的速度向量
+	ball.linear_velocity=ball_linear_velocity*500
+
+	pass # Replace with function body.
