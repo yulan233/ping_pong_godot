@@ -42,10 +42,11 @@ func ai_move()->float:
 
 func _on_body_entered(body: Node2D) -> void:
 	var ball:Ball=body as Ball
-	var ball_linear_velocity:=ball.linear_velocity/500
-	print(ball.position,position)
+	var ball_linear_velocity:=ball.linear_velocity/400
+
 	var p_b_offset:=position.y-ball.position.y
 	var in_player_per:=p_b_offset/60
+	
 	# 判断方向并旋转和求反弹后向量
 	if ball_linear_velocity.dot(Vector2.LEFT)>0:
 		var n:=Vector2.RIGHT.rotated(-PI/4*in_player_per).normalized()
@@ -54,6 +55,6 @@ func _on_body_entered(body: Node2D) -> void:
 		var n:=Vector2.LEFT.rotated(PI/4*in_player_per).normalized()
 		ball_linear_velocity=ball_linear_velocity.bounce(n).normalized()
 	#为ball赋值计算后的速度向量
-	ball.linear_velocity=ball_linear_velocity*500
+	ball.linear_velocity=ball_linear_velocity*400
 
 	pass # Replace with function body.
