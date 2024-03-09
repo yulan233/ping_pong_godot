@@ -2,6 +2,8 @@ extends RigidBody2D
 
 #自定义游戏结束信号
 signal game_over
+#定义一个撞击效果信号
+signal impack_effect
 
 var initVelcity:=-400.0
 var uiSize:Vector2
@@ -30,8 +32,14 @@ func _physics_process(_delta: float) -> void:
 		#如果球碰到上下边缘则反弹
 		if position.y<=0:
 			linear_velocity=linear_velocity.bounce(Vector2.DOWN)
+			active_impack_effect(90)
 		if position.y>=uiSize.y:
 			linear_velocity=linear_velocity.bounce(Vector2.UP)
+			active_impack_effect(-90)
+
+## 触发反弹特效
+func active_impack_effect(angle:float)->void:
+	emit_signal("impack_effect",angle)
 
 ## 触发游戏结束
 func s_game_over()->void:

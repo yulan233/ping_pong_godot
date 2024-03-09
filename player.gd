@@ -51,9 +51,11 @@ func _on_body_entered(body: Node2D) -> void:
 	if ball_linear_velocity.dot(Vector2.LEFT)>0:
 		var n:=Vector2.RIGHT.rotated(-PI/4*in_player_per).normalized()
 		ball_linear_velocity=ball_linear_velocity.bounce(n).normalized()
+		ball.active_impack_effect(0)
 	else:
 		var n:=Vector2.LEFT.rotated(PI/4*in_player_per).normalized()
 		ball_linear_velocity=ball_linear_velocity.bounce(n).normalized()
+		ball.active_impack_effect(-180)
 	#为ball赋值计算后的速度向量
 	ball.linear_velocity=ball_linear_velocity*400
 

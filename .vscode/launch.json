@@ -10,7 +10,7 @@
             "request": "launch",
             "project": "${workspaceFolder}",
             "address": "127.0.0.1",
-            "port": 6006,
+            "port": 6007,
             "editor_path": "/Applications/Godot.app/Contents/MacOS/Godot",
             // engine command line flags
             "profiling": false,
@@ -23,9 +23,7 @@
             "frame_delay": 0,
             "time_scale": 1.0,
             "disable_vsync": false,
-            "fixed_fps": 60,
-            // anything else
-            "additional_options": ""
+            "fixed_fps": 60
         }
     ]
 }
