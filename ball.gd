@@ -5,7 +5,8 @@ signal game_over
 #定义一个撞击效果信号
 signal impack_effect
 
-var initVelcity:=-400.0
+@export var pounch_increment:=10
+@export var base_velcity:=400.0
 var uiSize:Vector2
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +25,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if GlobalVar.isStart:
 		if linear_velocity==Vector2.ZERO:
-			linear_velocity=Vector2(initVelcity,0)
+			linear_velocity=Vector2(-base_velcity,0)
 		#如果超出游戏场景就结束游戏
 		if position.x<0 or position.x>uiSize.x:
 			s_game_over()
@@ -33,9 +34,11 @@ func _physics_process(_delta: float) -> void:
 		if position.y<=0:
 			linear_velocity=linear_velocity.bounce(Vector2.DOWN)
 			active_impack_effect(90)
+			up_base_velocity(pounch_increment)
 		if position.y>=uiSize.y:
 			linear_velocity=linear_velocity.bounce(Vector2.UP)
 			active_impack_effect(-90)
+			up_base_velocity(pounch_increment)
 
 ## 触发反弹特效
 func active_impack_effect(angle:float)->void:
@@ -45,3 +48,8 @@ func active_impack_effect(angle:float)->void:
 func s_game_over()->void:
 	emit_signal("game_over")
 	queue_free()
+
+func up_base_velocity(increment:float):
+	linear_velocity=linear_velocity/base_velcity
+	base_velcity+=increment
+	linear_velocity=linear_velocity*base_velcity

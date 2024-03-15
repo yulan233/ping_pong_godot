@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func s_game_over()->void:
-	print("game_over")
+	# print("game_over")
 	#游戏结束的一些处理
 	GlobalVar.isStart=false
 	if ball.game_over.is_connected(s_game_over):
@@ -35,15 +35,16 @@ func _on_button_pressed() -> void:
 	if ball!=null:
 		return
 	ui.visible=false
-	GlobalVar.isStart=!GlobalVar.isStart
 	ball=BALL.instantiate()
 	ball.game_over.connect(s_game_over)
 	ball.impack_effect.connect(s_impack_effect_create)
 	add_child(ball)
+	# 当一切初始化完成了再开始
+	GlobalVar.isStart=!GlobalVar.isStart
 	pass # Replace with function body.
 
 func s_impack_effect_create(angle:float):
-	print("impack")
+	# print("impack")
 	var effect:GPUParticles2D=Effect.instantiate()
 	effect.rotation_degrees=angle
 	effect.position=ball.position
