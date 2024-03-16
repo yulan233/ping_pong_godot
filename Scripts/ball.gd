@@ -42,11 +42,11 @@ func _physics_process(_delta: float) -> void:
 
 ## 触发反弹特效
 func active_impack_effect(angle:float)->void:
-	emit_signal("impack_effect",angle)
+	impack_effect.emit(angle)
 
 ## 触发游戏结束
 func s_game_over()->void:
-	emit_signal("game_over")
+	game_over.emit()
 	queue_free()
 
 func up_base_velocity(increment:float):

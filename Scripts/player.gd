@@ -1,6 +1,6 @@
 extends Area2D
 
-const Ball = preload("res://ball.gd")
+const Ball = preload("res://Scripts/ball.gd")
 
 @export var SPEED := 5.0
 @export var JUMP_VELOCITY := 100.0

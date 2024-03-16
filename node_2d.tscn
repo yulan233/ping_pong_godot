@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://8syculcb3lxr"]
+[gd_scene load_steps=5 format=3 uid="uid://8syculcb3lxr"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_mer6w"]
-[ext_resource type="PackedScene" uid="uid://c0khdntwboro1" path="res://player.tscn" id="2_qqe6n"]
+[ext_resource type="PackedScene" uid="uid://c0khdntwboro1" path="res://Scene/player.tscn" id="2_qqe6n"]
 [ext_resource type="Texture2D" uid="uid://b6mh3jcpixe7q" path="res://icon.svg" id="3_7348w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pmem5"]
+font_size = 48
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mer6w")
@@ -21,8 +24,8 @@ position = Vector2(48, 135)
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1100.0
+offset_bottom = 600.0
 
 [node name="Button" type="Button" parent="UI"]
 layout_mode = 1
@@ -41,5 +44,20 @@ text = "开始游戏"
 icon = ExtResource("3_7348w")
 icon_alignment = 1
 vertical_icon_alignment = 2
+
+[node name="Label" type="Label" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_pmem5")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
